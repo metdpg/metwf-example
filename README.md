@@ -1,4 +1,17 @@
-# Getting Started with Create React App
+# MET Norway Weather API Map client test
+Popup timeseries for any point, centered on Ethiopia.
+
+How to use:
+```
+git clone <repo>
+cd ethiopia
+npm install
+npm start
+```
+
+Click on map, and click again on marker that shows up. Then you should get a popup with a forecast timeseries graph.
+
+## React app boilerplate docs: Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

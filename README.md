@@ -4,7 +4,7 @@ Popup timeseries for any point, centered on Ethiopia.
 How to use:
 ```
 git clone <repo>
-cd ethiopia
+cd gdpg-ethiopia
 npm install
 npm start
 ```

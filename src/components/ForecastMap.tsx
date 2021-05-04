@@ -48,15 +48,15 @@ export default function ForecastMap() {
             .then((response) => {
                 if (response.ok) {
                     return response.json()
-                } 
+                }
             })
-            .then((boundary: GeoJsonObject) => {
-                setBoundary(boundary)
+            .then((new_boundary: GeoJsonObject) => {
+                setBoundary(new_boundary)
             })
         }
         fetchEthiopiaBoundary()
+    }, [])
 
-    })
     return (
         <MapContainer center={position} zoom={zoom} scrollWheelZoom={false}>
             <TileLayer

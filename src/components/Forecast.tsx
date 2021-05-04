@@ -20,7 +20,7 @@ export default function Forecast({position}: ForecastProps) {
         fetchForecastData().then((body: WeatherGeoJSON) => {
             setForecast(body)
         })
-    });
+    }, []);
 
     return forecast == null ?
         (

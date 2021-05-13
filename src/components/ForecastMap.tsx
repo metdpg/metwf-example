@@ -1,9 +1,10 @@
-import L, { LatLngExpression } from "leaflet";
+import L, { LatLngExpression, PathOptions } from "leaflet";
 import { GeoJsonObject } from "geojson";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, TileLayer, Popup, useMapEvents, GeoJSON } from "react-leaflet";
 import { useState, useEffect } from "react";
-import Forecast from "./Forecast"
+import Forecast from "./Forecast";
+import InvertPolygonExtension from "../lib/snogylop.js";
 
 // Hack to get marker icon to work
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -18,9 +19,13 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 type Position = L.LatLng|null
 
+// interface InvertPathOptions extends PathOptions {
+//     invert?: boolean
+// }
+
 function ForecastMarker() {
     const [position, setPosition] = useState<Position>(null)
-    const map = useMapEvents({
+    useMapEvents({
         click(e) {
             setPosition(e.latlng)
         },
@@ -54,16 +59,19 @@ export default function ForecastMap() {
                 setBoundary(new_boundary)
             })
         }
+        InvertPolygonExtension()
         fetchEthiopiaBoundary()
+        console.log("load boundary")
     }, [])
 
+    
     return (
         <MapContainer center={position} zoom={zoom} scrollWheelZoom={false}>
             <TileLayer
                attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            { boundary && <GeoJSON data={boundary} pathOptions={ {fill: true, fillOpacity: 0.05} } /> }
+            { boundary && <GeoJSON data={boundary} pathOptions={ {fill: true, fillColor: "#808080", fillOpacity: 0.5} as PathOptions} /> }
             
             <ForecastMarker />
             {

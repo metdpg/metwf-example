@@ -43,7 +43,7 @@ function ForecastMarker() {
 export default function ForecastMap() {
     // Default coordinates set to Ethiopia.
     const position : LatLngExpression = [9.016667, 38.75];
-    const zoom : number = 6;
+    const zoom : number = 7;
 
     const [boundary, setBoundary] = useState<GeoJsonObject>()
 

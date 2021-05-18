@@ -1,16 +1,16 @@
 import Plot from 'react-plotly.js';
-import {Forecast} from './METWeatherJSON';
+import {WeatherGeoJSON, Forecast} from './METWeatherJSON';
 
 type ForecastGraphProps = {
-    forecast: Forecast;
+    forecast: WeatherGeoJSON;
 }
 
 export default function ForecastGraph({forecast}: ForecastGraphProps) {
-    let hours: string[] = timeLabelsInHours(forecast)
+    let hours: string[] = timeLabelsInHours(forecast.properties)
     let temp_values:  (number|null)[] = []
     let precip_values: number[] = []
  
-    forecast.timeseries.forEach((step, index) => {        
+    forecast.properties.timeseries.forEach((step, index) => {        
         if (step.data["next_1_hours"]){
             precip_values.push(step.data["next_1_hours"].details["precipitation_amount"])
             temp_values.push(step.data["instant"].details["air_temperature"])
@@ -37,7 +37,11 @@ export default function ForecastGraph({forecast}: ForecastGraphProps) {
             mode: "lines",
             yaxis: "y",
             visible: true,
-            connectgaps: true
+            connectgaps: true,
+            marker: {
+                color: 'rgb(220,20,60)',
+                size: 12
+            },
         }
 
     const precipitation: Plotly.Data =
@@ -48,7 +52,10 @@ export default function ForecastGraph({forecast}: ForecastGraphProps) {
             name: "Precipitation",
             yaxis: "y2",
             opacity: 0.3,
-            visible: true
+            visible: true,
+            marker: {
+                color: 'rgb(30,144,255)',
+            },
         }
 
     return (
@@ -58,7 +65,7 @@ export default function ForecastGraph({forecast}: ForecastGraphProps) {
             layout = {{
                 width: 740,
                 height: 400,
-                title: "Forecast",
+                title: "Forecast for lat: " + forecast.geometry.coordinates[1] + ", long: " + forecast.geometry.coordinates[0],
                 xaxis: {
                     title: 'Time',
                     showgrid: true,
@@ -79,6 +86,8 @@ export default function ForecastGraph({forecast}: ForecastGraphProps) {
 
                 }
             }}
+            
+            config={{displayModeBar: false}}
         />
 
     )

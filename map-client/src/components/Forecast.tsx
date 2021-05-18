@@ -13,7 +13,10 @@ export default function Forecast({position}: ForecastProps) {
 
     useEffect(() => {
         const fetchForecastData = async () => {
-            const url = `${ base_url }lat=${position.lat}&lon=${ position.lng }`
+            let lat = Math.round(position.lat * 1000) / 1000
+            let lng = Math.round(position.lng * 1000) / 1000
+            const url = `${ base_url }lat=${lat}&lon=${ lng }`
+
             const response = await fetch(url)
             return await response.json() as WeatherGeoJSON
         }
@@ -27,6 +30,6 @@ export default function Forecast({position}: ForecastProps) {
             <p>Waiting...</p>
         ):
         (
-            <ForecastGraph forecast={forecast.properties} />
+            <ForecastGraph forecast={forecast} />
         )
 }

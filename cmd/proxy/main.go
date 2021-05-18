@@ -22,9 +22,10 @@ func main() {
 		log.Fatalf("could not setup client: %s", err)
 	}
 
-	http.Handle("/api/proxy", http.StripPrefix("/api/proxy", proxyUnchanged))
-	http.Handle("/api/pp", http.StripPrefix("/api/pp", proxyWithPP))
+	http.Handle("/api/proxy/", http.StripPrefix(("/api/proxy"), proxyUnchanged))
+	http.Handle("/api/pp/", http.StripPrefix("/api/pp", proxyWithPP))
 	http.Handle("/", http.FileServer(clientFS))
 
+	log.Println("Start up proxy server...")
 	log.Fatal(http.ListenAndServe((":8080"), nil))
 }

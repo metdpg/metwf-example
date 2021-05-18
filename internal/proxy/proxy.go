@@ -13,7 +13,6 @@ func ProxyUnchanged(apiURL *url.URL) *httputil.ReverseProxy {
 			r.Host = apiURL.Host
 			r.URL.Host = r.Host
 			r.URL.Scheme = "https"
-
 		},
 	}
 }

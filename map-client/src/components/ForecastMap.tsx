@@ -1,9 +1,9 @@
 import L, { LatLngExpression, PathOptions } from "leaflet";
 import { GeoJsonObject } from "geojson";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, Marker, TileLayer, Popup, useMapEvents, GeoJSON } from "react-leaflet";
+import { MapContainer, TileLayer, Popup, useMapEvents, GeoJSON } from "react-leaflet";
 import { useState, useEffect } from "react";
-import Forecast from "./Forecast";
+import ForecastGraph from "./ForecastGraph";
 import InvertPolygonExtension from "../lib/snogylop.js";
 
 // Hack to get marker icon to work
@@ -23,8 +23,9 @@ type Position = L.LatLng|null
 //     invert?: boolean
 // }
 
-function ForecastMarker() {
+function ForecastPosition() {
     const [position, setPosition] = useState<Position>(null)
+    
     useMapEvents({
         click(e) {
             setPosition(e.latlng)
@@ -32,11 +33,9 @@ function ForecastMarker() {
     })
 
     return position === null ? null : (
-        <Marker position={position}>
-            <Popup>
-                <Forecast position={ position }  />
-            </Popup>
-        </Marker>
+        <Popup position={ position } >
+            <ForecastGraph position={ position }  />
+        </Popup>
     )
 }
 
@@ -61,7 +60,6 @@ export default function ForecastMap() {
         }
         InvertPolygonExtension()
         fetchEthiopiaBoundary()
-        console.log("load boundary")
     }, [])
 
     
@@ -71,12 +69,9 @@ export default function ForecastMap() {
                attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            { boundary && <GeoJSON data={boundary} pathOptions={ {fill: true, fillColor: "#808080", fillOpacity: 0.5} as PathOptions} /> }
+            { boundary && <GeoJSON data={boundary} pathOptions={ {fill: true, fillColor: "#808080", fillOpacity: 0.7} as PathOptions} /> }
             
-            <ForecastMarker />
-            {
-                // Placeholder, we'll put our markers here
-            }
+            <ForecastPosition />
         </MapContainer>
         )
 };

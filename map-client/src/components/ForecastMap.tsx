@@ -19,9 +19,9 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 type Position = L.LatLng|null
 
-// interface InvertPathOptions extends PathOptions {
-//     invert?: boolean
-// }
+interface InvertPathOptions extends PathOptions {
+    invert?: boolean
+}
 
 function ForecastPosition() {
     const [position, setPosition] = useState<Position>(null)
@@ -69,7 +69,7 @@ export default function ForecastMap() {
                attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            { boundary && <GeoJSON data={boundary} pathOptions={ {fill: true, fillColor: "#808080", fillOpacity: 0.7} as PathOptions} /> }
+            { boundary && <GeoJSON data={boundary} pathOptions={ {fill: true, fillColor: "#808080", fillOpacity: 0.7, invert: true} as InvertPathOptions} /> }
             
             <ForecastPosition />
         </MapContainer>

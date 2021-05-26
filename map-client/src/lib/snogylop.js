@@ -23,19 +23,23 @@ export default function InvertPolygonExtension() {
                 if (isFlat(this._originalLatLngs)) {
                     this._originalLatLngs = [this._originalLatLngs];
                 }
-                worldLatlngs = (this.options.worldLatLngs ?
-                    this.options.worldLatLngs :
-                    worldLatlngs);
-                // Create a new set of latlngs, adding our world-sized ring
-                // first
-                var newLatlngs = [];
-                newLatlngs.push(worldLatlngs);
-                for (var l in latlngs) {
-                    newLatlngs.push(latlngs[l]);
+                if (this.options.pathOptions.invert) {
+                    worldLatlngs = (this.options.worldLatLngs ?
+                        this.options.worldLatLngs :
+                        worldLatlngs);
+                    // Create a new set of latlngs, adding our world-sized ring
+                    // first
+                    var newLatlngs = [];
+                    newLatlngs.push(worldLatlngs);
+
+                    for (var l in latlngs) {
+                        newLatlngs.push(latlngs[l]);
+                    }
+                    latlngs = [newLatlngs];
                 }
-                latlngs = [newLatlngs];
                 L.Polyline.prototype._setLatLngs.call(this, latlngs);
             },
+
             getBounds: function () {
                 if (this._originalLatLngs) {
                     // Don't return the world-sized ring's bounds, that's not
@@ -44,16 +48,23 @@ export default function InvertPolygonExtension() {
                 }
                 return new L.LatLngBounds(this.getLatLngs());
             },
+
             getLatLngs: function() {
                 return this._originalLatLngs;
             },
+
             toGeoJSON: function (precision) {
+                if (!this.options.pathOptions.invert) return OriginalPolygon.toGeoJSON.call(this, precision);
+
                 var holes = !isFlat(this._originalLatLngs),
                     multi = holes && !isFlat(this._originalLatLngs[0]);
+
                 var coords = L.GeoJSON.latLngsToCoords(this._originalLatLngs, multi ? 2 : holes ? 1 : 0, true, precision);
+
                 if (!holes) {
                     coords = [coords];
                 }
+
                 return L.GeoJSON.getFeature(this, {
                     type: (multi ? 'Multi' : '') + 'Polygon',
                     coordinates: coords

@@ -1,13 +1,67 @@
-import React from 'react';
-import './App.css';
-import ForecastMap from './components/ForecastMap';
+import React, { useState } from 'react';
+import { MuiThemeProvider, SimplePaletteColorOptions } from '@material-ui/core';
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+} from '@material-ui/core';
+import { paletteMap, paletteAsString } from './utils/metMuiThemes'
+import { BrowserRouter, Route } from 'react-router-dom';
+import createTheme from './utils/createTheme';
+import Home from './pages/Home';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Observations from './pages/Observations';
+import Map from './pages/Map'
+import backGroundWaves from "./images/waves.png";
 
-function App() {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    '@global': {
+      '.global-root': {
+        width: '100%',
+        maxWidth: '1440px',
+        margin: '0px auto',
+      },
+    },
+    root: {
+      height: '100%',
+      backgroundImage: `url(${backGroundWaves})`,
+    },
+  })
+);
+
+const App: React.FC = () => {
+  const classes = useStyles();
+  const [palette, setPalette] = useState<SimplePaletteColorOptions | undefined>(paletteMap.get('teal_palette'));
+
+  const handlePaletteChanged = (newPalette: string) => {
+    setPalette(paletteMap.get(newPalette));
+  }
+
   return (
-    <div className="App">
-      <ForecastMap />
-    </div>
+    <MuiThemeProvider theme={createTheme(palette, paletteMap.get('black_palette'))}>
+      <BrowserRouter>
+        <div className={classes.root}>
+          <Route exact={true} path='/' render={() => (
+            <>
+              <Header />
+              <Home currentPalette={paletteAsString(palette)} onPaletteChanged={handlePaletteChanged} />
+              <Footer />
+            </>
+          )} />
+          <Route exact={true} path='/map' render={() => (
+            <>
+              <Header />
+              <Map />
+              <Footer />
+            </>
+          )} />
+        </div>
+      </BrowserRouter>
+    </MuiThemeProvider>
   );
-}
+};
 
 export default App;
+

@@ -49,9 +49,7 @@ export default function DemoMenu() {
             <Paper>
               <ClickAwayListener onClickAway={() => setOpen(false)}>
                 <MenuList autoFocusItem={open} id="menu-list-grow" >
-                  <MenuItem onClick={() => window.open("/", "_self")}>Main page</MenuItem>
-                  <MenuItem onClick={() => window.open("/map", "_self")}>Map</MenuItem>
-                  <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  <MenuItem onClick={() => window.open("/", "_self")}>Map</MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>

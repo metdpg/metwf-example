@@ -8,10 +8,7 @@ import {
 import { paletteMap, paletteAsString } from './utils/metMuiThemes'
 import { BrowserRouter, Route } from 'react-router-dom';
 import createTheme from './utils/createTheme';
-import Home from './pages/Home';
 import Header from './components/Header';
-import Footer from './components/Footer';
-import Observations from './pages/Observations';
 import Map from './pages/Map'
 import backGroundWaves from "./images/waves.png";
 
@@ -46,15 +43,7 @@ const App: React.FC = () => {
           <Route exact={true} path='/' render={() => (
             <>
               <Header />
-              <Home currentPalette={paletteAsString(palette)} onPaletteChanged={handlePaletteChanged} />
-              <Footer />
-            </>
-          )} />
-          <Route exact={true} path='/map' render={() => (
-            <>
-              <Header />
               <Map />
-              <Footer />
             </>
           )} />
         </div>

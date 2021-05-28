@@ -43,9 +43,6 @@ const Header: React.FC = () => {
         <Toolbar className={styles.toolBar}>
           <img className={styles.logo} src={logo} alt="met logo" />
           <div className={styles.grow} />
-          <IconButton className={styles.searchIcon} aria-label="Open drawer">
-            <SearchIcon />
-          </IconButton>
           <Menu />
         </Toolbar>
       </AppBar>

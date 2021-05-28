@@ -64,7 +64,8 @@ export default function ForecastMap() {
     }, [])
 
     const style = {
-        height: '66vh'
+        height: 'calc(100vh - 130px)',
+        marginBottom: '10px'
     }
     
     return (

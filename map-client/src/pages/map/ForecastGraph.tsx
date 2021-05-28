@@ -1,9 +1,7 @@
 import Plot from 'react-plotly.js';
 import { useEffect, useState } from "react";
 import React from 'react';
-import getForecast, { Query, Forecast } from '../../utils/forecast';
-
-const base_url = 'https://api.met.no/weatherapi/locationforecast/2.0/complete.json?'
+import getForecast, { Forecast } from '../../utils/forecast';
 
 type ForecastGraphProps = {
     position: L.LatLng

@@ -5,7 +5,7 @@ import {
   createStyles,
   Theme,
 } from '@material-ui/core';
-import { paletteMap, paletteAsString } from './utils/metMuiThemes'
+import { paletteMap } from './utils/metMuiThemes'
 import { BrowserRouter, Route } from 'react-router-dom';
 import createTheme from './utils/createTheme';
 import Header from './components/Header';

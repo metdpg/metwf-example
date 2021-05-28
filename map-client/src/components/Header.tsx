@@ -1,8 +1,7 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import logo from '../images/met_logo.png';
-import { AppBar, IconButton, Toolbar } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import { AppBar, Toolbar } from '@material-ui/core';
 import Menu from './Menu';
 import { pageSpacing } from '../utils/metMuiThemes';
 

@@ -26,10 +26,6 @@ export default function DemoMenu() {
     setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = (event: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-    setOpen(false);
-  };
-
   return (
     <div className={classes.root}>
       <IconButton

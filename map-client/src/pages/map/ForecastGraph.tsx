@@ -1,7 +1,7 @@
 import Plot from 'react-plotly.js';
-import {WeatherGeoJSON, Weather, Forecast} from './METWeatherJSON';
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import React from 'react';
+import getForecast, { Query, Forecast } from '../../utils/forecast';
 
 const base_url = 'https://api.met.no/weatherapi/locationforecast/2.0/complete.json?'
 
@@ -10,8 +10,8 @@ type ForecastGraphProps = {
 }
 
 type Params = {
-    temp: (number|null)[]
-    precip: number[]
+    temp: (number | null)[]
+    precip: (number | null)[]
 }
 
 type PlotlyData = {
@@ -19,37 +19,30 @@ type PlotlyData = {
     precip: Plotly.Data
 }
 
-export default function ForecastGraph({position}: ForecastGraphProps) {
-    const [forecast, setForecast] = useState<Weather>(null)
+export default function ForecastGraph({ position }: ForecastGraphProps) {
+    const [forecast, setForecast] = useState<Forecast | null>(null)
 
     useEffect(() => {
-        const fetchForecastData = async () => {
-            let lat = Math.round(position.lat * 1000) / 1000
-            let lng = Math.round(position.lng * 1000) / 1000
-            const url = `${ base_url }lat=${lat}&lon=${ lng }`
-
-            const response = await fetch(url)
-            return await response.json() as WeatherGeoJSON
-        }
-
         setForecast(null)
-        fetchForecastData().then((body: WeatherGeoJSON) => {
-            setForecast(body)
-        })
+        getForecast({ lat: position.lat, lon: position.lng }).then(
+            (forecast: Forecast | null) => {
+                setForecast(forecast)
+            }
+        )
     }, [position]);
 
-    if (forecast){
-        let hours: string[] = hourlyTimeLabels(forecast.properties)
-        let params = hourlyParamValues(forecast.properties)
+    if (forecast) {
+        let hours: string[] = hourlyTimeLabels(forecast)
+        let params = hourlyParamValues(forecast)
 
         let plotly_data = plotlyData(hours, params)
-        
-        
+
+
         return (
             <Plot
-                data = {[plotly_data.temp, plotly_data.precip]}
-        
-                layout = {{
+                data={[plotly_data.temp, plotly_data.precip]}
+
+                layout={{
                     width: 740,
                     height: 400,
                     title: "Forecast for lat: " + forecast.geometry.coordinates[1] + ", long: " + forecast.geometry.coordinates[0],
@@ -71,7 +64,7 @@ export default function ForecastGraph({position}: ForecastGraphProps) {
                         showgrid: false,
                         side: "right",
                         overlaying: "y"
-                    
+
                     },
                     legend: {
                         orientation: "v",
@@ -84,75 +77,90 @@ export default function ForecastGraph({position}: ForecastGraphProps) {
 
                 }}
 
-                config={{displayModeBar: false}}
+                config={{ displayModeBar: false }}
             />
-            
+
         )
-    }else{
+    } else {
         return (<p>
-                    Waiting...
-                </p>
+            Waiting...
+        </p>
         )
     }
-        
+
 }
 
 function plotlyData(hours: string[], params: Params): PlotlyData {
     const temperature: Plotly.Data =
-        {
-            x: hours,
-            y: params.temp,
-            type: "scatter",
-            name: "Temperature",
-            mode: "lines",
-            yaxis: "y",
-            visible: true,
-            connectgaps: true,
-            marker: {
-                color: 'rgb(220,20,60)',
-                size: 12
-            },
-        }
-        
+    {
+        x: hours,
+        y: params.temp,
+        type: "scatter",
+        name: "Temperature",
+        mode: "lines",
+        yaxis: "y",
+        visible: true,
+        connectgaps: true,
+        marker: {
+            color: 'rgb(220,20,60)',
+            size: 12
+        },
+    }
+
     const precipitation: Plotly.Data =
-        {
-            x: hours,
-            y: params.precip,
-            type: "bar",
-            name: "Precipitation",
-            yaxis: "y2",
-            opacity: 0.3,
-            visible: true,
-            marker: {
-                color: 'rgb(30,144,255)',
-            },
-        }
-    
+    {
+        x: hours,
+        y: params.precip,
+        type: "bar",
+        name: "Precipitation",
+        yaxis: "y2",
+        opacity: 0.3,
+        visible: true,
+        marker: {
+            color: 'rgb(30,144,255)',
+        },
+    }
+
     return {
         temp: temperature,
         precip: precipitation
     }
 }
 
-function hourlyParamValues(forecast: Forecast): Params{
-    let temp_values:  (number|null)[] = []
-    let precip_values: number[] = []
- 
-    forecast.timeseries.forEach((step, index) => {        
-        if (step.data["next_1_hours"]){
-            precip_values.push(step.data["next_1_hours"].details["precipitation_amount"])
-            temp_values.push(step.data["instant"].details["air_temperature"])
 
-        }else if (step.data["next_6_hours"]){
-            const precip_6hours = step.data["next_6_hours"].details["precipitation_amount"]
-            for (let i = 0; i < 6; i++){
-                precip_values.push(precip_6hours/6)
+function hourlyParamValues(forecast: Forecast): Params {
+    let temp_values: (number | null)[] = []
+    let precip_values: (number | null)[] = []
+
+    forecast.properties.timeseries.forEach((step, index) => {
+        if (step.data.next_1_hours) {
+            let precip: number | undefined | null = step.data.next_1_hours?.details?.precipitation_amount
+            if (precip === undefined)
+                precip = null
+            precip_values.push(precip)
+
+            let temp: number | undefined | null = step.data.instant?.details?.air_temperature
+            if (temp === undefined)
+                temp = null
+            temp_values.push(temp)
+
+        } else if (step.data["next_6_hours"]) {
+            let precip: number | undefined | null = step.data.next_6_hours?.details?.precipitation_amount
+            if (precip === undefined)
+                precip = null
+            else
+                precip /= 6
+            for (let i = 0; i < 6; i++) {
+                precip_values.push(precip)
             }
-            for (let i = 0; i < 5; i++){
+
+            let temp: number | undefined | null = step.data.instant?.details?.air_temperature
+            if (temp === undefined)
+                temp = null
+            for (let i = 0; i < 5; i++)
                 temp_values.push(null)
-            }
+            temp_values.push(temp)
 
-            temp_values.push(step.data["instant"].details["air_temperature"])
         }
     })
 
@@ -163,11 +171,11 @@ function hourlyParamValues(forecast: Forecast): Params{
 }
 
 function hourlyTimeLabels(forecast: Forecast) {
-    let start = forecast.timeseries[0].time
-    let end = forecast.timeseries[forecast.timeseries.length - 1].time
+    let start = forecast.properties.timeseries[0].time
+    let end = forecast.properties.timeseries[forecast.properties.timeseries.length - 1].time
 
     let hours: string[] = []
-    for (let d = new Date(start); d <=  new Date(end); d.setHours(d.getHours() + 1) ){
+    for (let d = new Date(start); d <= new Date(end); d.setHours(d.getHours() + 1)) {
         hours.push(d.toISOString())
     }
 

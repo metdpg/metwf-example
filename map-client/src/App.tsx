@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { MuiThemeProvider, SimplePaletteColorOptions } from '@material-ui/core';
+import React from 'react';
+import { MuiThemeProvider } from '@material-ui/core';
 import {
   makeStyles,
   createStyles,
@@ -30,14 +30,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const App: React.FC = () => {
   const classes = useStyles();
-  const [palette, setPalette] = useState<SimplePaletteColorOptions | undefined>(paletteMap.get('teal_palette'));
-
-  const handlePaletteChanged = (newPalette: string) => {
-    setPalette(paletteMap.get(newPalette));
-  }
 
   return (
-    <MuiThemeProvider theme={createTheme(palette, paletteMap.get('black_palette'))}>
+    <MuiThemeProvider theme={createTheme(paletteMap.get('teal_palette'), paletteMap.get('black_palette'))}>
       <BrowserRouter>
         <div className={classes.root}>
           <Route exact={true} path='/' render={() => (

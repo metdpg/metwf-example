@@ -1,0 +1,135 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    33.78725,
+                    -13.96692
+                ]
+            },
+            "properties": {
+                "name": "Lilongwe"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.00854,
+                    -15.78499
+                ]
+            },
+            "properties": {
+                "name": "Blantyre"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.3188,
+                    -15.38596
+                ]
+            },
+            "properties": {
+                "name": "Zomba"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    33.48333,
+                    -13.03333
+                ]
+            },
+            "properties": {
+                "name": "Kasungu"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.26448,
+                    -14.47815
+                ]
+            },
+            "properties": {
+                "name": "Mangochi"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    33.93333,
+                    -9.93333
+                ]
+            },
+            "properties": {
+                "name": "Karonga"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    34.4587,
+                    -13.7804
+                ]
+            },
+            "properties": {
+                "name": "Salima"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    34.29614,
+                    -12.92744
+                ]
+            },
+            "properties": {
+                "name": "Nkhotakota"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.22543,
+                    -15.06665
+                ]
+            },
+            "properties": {
+                "name": "Liwonde"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    35.26199,
+                    -16.91995
+                ]
+            },
+            "properties": {
+                "name": "Nsanj"
+            }
+        }
+    ]
+}

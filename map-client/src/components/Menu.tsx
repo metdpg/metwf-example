@@ -46,6 +46,7 @@ export default function DemoMenu() {
               <ClickAwayListener onClickAway={() => setOpen(false)}>
                 <MenuList autoFocusItem={open} id="menu-list-grow" >
                   <MenuItem onClick={() => window.open("/", "_self")}>Map</MenuItem>
+                  <MenuItem onClick={() => window.open("/forecastlist", "_self")}>Forecast List</MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>

@@ -5,11 +5,12 @@ import {
   createStyles,
   Theme,
 } from '@material-ui/core';
-import { paletteMap } from './utils/metMuiThemes'
+import { paletteMap, pageSpacing } from './utils/metMuiThemes'
 import { BrowserRouter, Route } from 'react-router-dom';
 import createTheme from './utils/createTheme';
 import Header from './components/Header';
-import Map from './pages/Map'
+import Map from './pages/Map';
+import ForecastList from './pages/ForecastList';
 import backGroundWaves from "./images/waves.png";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -22,8 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     root: {
+      ...pageSpacing(theme),
       height: '100%',
       backgroundImage: `url(${backGroundWaves})`,
+      flexGrow: 1,
     },
   })
 );
@@ -39,6 +42,12 @@ const App: React.FC = () => {
             <>
               <Header />
               <Map />
+            </>
+          )} />
+          <Route exact={true} path='/forecastlist' render={() => (
+            <>
+              <Header />
+              <ForecastList />
             </>
           )} />
         </div>

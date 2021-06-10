@@ -1,0 +1,373 @@
+{
+    "sleet": {
+        "old_id": 12,
+        "desc_en": "Sleet",
+        "desc_nn": "Sludd",
+        "variants": null,
+        "desc_nb": "Sludd"
+    },
+    "lightrainandthunder": {
+        "desc_nn": "Lett regn og torevêr",
+        "desc_nb": "Lett regn og torden",
+        "variants": null,
+        "old_id": 30,
+        "desc_en": "Light rain and thunder"
+    },
+    "lightssleetshowersandthunder": {
+        "desc_nn": "Lette sluddbyer og torevêr",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Lette sluddbyger og torden",
+        "desc_en": "Light sleet showers and thunder",
+        "old_id": 26
+    },
+    "fair": {
+        "desc_nn": "Lettskya",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Lettskyet",
+        "desc_en": "Fair",
+        "old_id": 2
+    },
+    "heavysleet": {
+        "old_id": 48,
+        "desc_en": "Heavy sleet",
+        "variants": null,
+        "desc_nb": "Kraftig sludd",
+        "desc_nn": "Kraftig sludd"
+    },
+    "sleetshowersandthunder": {
+        "old_id": 20,
+        "desc_en": "Sleet showers and thunder",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Sluddbyger og torden",
+        "desc_nn": "Sluddbyer og torevêr"
+    },
+    "rainshowers": {
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Regnbyger",
+        "desc_nn": "Regnbyer",
+        "desc_en": "Rain showers",
+        "old_id": 5
+    },
+    "lightssnowshowersandthunder": {
+        "desc_en": "Light snow showers and thunder",
+        "old_id": 28,
+        "desc_nn": "Lette snøbyer og torevêr",
+        "desc_nb": "Lette snøbyger og torden",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ]
+    },
+    "lightsleetandthunder": {
+        "old_id": 31,
+        "desc_en": "Light sleet and thunder",
+        "desc_nn": "Lett sludd og torevêr",
+        "variants": null,
+        "desc_nb": "Lett sludd og torden"
+    },
+    "rainandthunder": {
+        "desc_en": "Rain and thunder",
+        "old_id": 22,
+        "variants": null,
+        "desc_nb": "Regn og torden",
+        "desc_nn": "Regn og torevêr"
+    },
+    "heavyrainshowersandthunder": {
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Kraftige regnbyger og torden",
+        "desc_nn": "Kraftige regnbyer og torevêr",
+        "old_id": 25,
+        "desc_en": "Heavy rain showers and thunder"
+    },
+    "lightsleetshowers": {
+        "desc_en": "Light sleet showers",
+        "old_id": 42,
+        "desc_nb": "Lette sluddbyger",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nn": "Lette sluddbyer"
+    },
+    "heavyrainshowers": {
+        "old_id": 41,
+        "desc_en": "Heavy rain showers",
+        "desc_nb": "Kraftige regnbyger",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nn": "Kraftige regnbyer"
+    },
+    "lightrainshowers": {
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Lette regnbyger",
+        "desc_nn": "Lette regnbyer",
+        "desc_en": "Light rain showers",
+        "old_id": 40
+    },
+    "lightsnowandthunder": {
+        "variants": null,
+        "desc_nb": "Lett snø og torden",
+        "desc_nn": "Lett snø og torevêr",
+        "old_id": 33,
+        "desc_en": "Light snow and thunder"
+    },
+    "rain": {
+        "desc_en": "Rain",
+        "old_id": 9,
+        "desc_nn": "Regn",
+        "variants": null,
+        "desc_nb": "Regn"
+    },
+    "snow": {
+        "old_id": 13,
+        "desc_en": "Snow",
+        "desc_nn": "Snø",
+        "desc_nb": "Snø",
+        "variants": null
+    },
+    "heavysleetandthunder": {
+        "desc_nn": "Kraftig sludd og torevêr",
+        "desc_nb": "Kraftig sludd og torden",
+        "variants": null,
+        "old_id": 32,
+        "desc_en": "Heavy sleet and thunder"
+    },
+    "snowandthunder": {
+        "desc_nn": "Snø og torevêr",
+        "desc_nb": "Snø og torden",
+        "variants": null,
+        "old_id": 14,
+        "desc_en": "Snow and thunder"
+    },
+    "lightsnowshowers": {
+        "old_id": 44,
+        "desc_en": "Light snow showers",
+        "desc_nb": "Lette snøbyger",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nn": "Lette snøbyer"
+    },
+    "cloudy": {
+        "desc_en": "Cloudy",
+        "old_id": 4,
+        "desc_nn": "Skya",
+        "desc_nb": "Skyet",
+        "variants": null
+    },
+    "snowshowers": {
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Snøbyger",
+        "desc_nn": "Snøbyer",
+        "old_id": 8,
+        "desc_en": "Snow showers"
+    },
+    "heavysnowandthunder": {
+        "desc_en": "Heavy snow and thunder",
+        "old_id": 34,
+        "desc_nb": "Kraftig snø og torden",
+        "variants": null,
+        "desc_nn": "Kraftig snø og torevêr"
+    },
+    "lightrainshowersandthunder": {
+        "desc_nn": "Lette regnbyer og torevêr",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Lette regnbyger og torden",
+        "desc_en": "Light rain showers and thunder",
+        "old_id": 24
+    },
+    "partlycloudy": {
+        "old_id": 3,
+        "desc_en": "Partly cloudy",
+        "desc_nn": "Delvis skya",
+        "desc_nb": "Delvis skyet",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ]
+    },
+    "heavyrainandthunder": {
+        "variants": null,
+        "desc_nb": "Kraftig regn og torden",
+        "desc_nn": "Kraftig regn og torevêr",
+        "desc_en": "Heavy rain and thunder",
+        "old_id": 11
+    },
+    "lightsleet": {
+        "desc_en": "Light sleet",
+        "old_id": 47,
+        "desc_nn": "Lett sludd",
+        "desc_nb": "Lett sludd",
+        "variants": null
+    },
+    "heavysnowshowersandthunder": {
+        "desc_nn": "Kraftige snøbyer og torevêr",
+        "desc_nb": "Kraftige snøbyger og torden",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_en": "Heavy snow showers and thunder",
+        "old_id": 29
+    },
+    "heavysleetshowersandthunder": {
+        "desc_nn": "Kraftige sluddbyer og torevêr",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Kraftige sluddbyger og torden",
+        "desc_en": "Heavy sleet showers and thunder",
+        "old_id": 27
+    },
+    "clearsky": {
+        "desc_en": "Clear sky",
+        "old_id": 1,
+        "desc_nn": "Klårvêr",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Klarvær"
+    },
+    "heavysleetshowers": {
+        "old_id": 43,
+        "desc_en": "Heavy sleet showers",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Kraftige sluddbyger",
+        "desc_nn": "Kraftige sluddbyer"
+    },
+    "fog": {
+        "desc_en": "Fog",
+        "old_id": 15,
+        "variants": null,
+        "desc_nb": "Tåke",
+        "desc_nn": "Skodde"
+    },
+    "lightrain": {
+        "desc_en": "Light rain",
+        "old_id": 46,
+        "desc_nn": "Lett regn",
+        "desc_nb": "Lett regn",
+        "variants": null
+    },
+    "lightsnow": {
+        "desc_en": "Light snow",
+        "old_id": 49,
+        "desc_nn": "Lett snø",
+        "desc_nb": "Lett snø",
+        "variants": null
+    },
+    "sleetshowers": {
+        "desc_en": "Sleet showers",
+        "old_id": 7,
+        "desc_nn": "Sluddbyer",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Sluddbyger"
+    },
+    "rainshowersandthunder": {
+        "desc_en": "Rain showers and thunder",
+        "old_id": 6,
+        "desc_nn": "Regnbyer og torevêr",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Regnbyger og torden"
+    },
+    "snowshowersandthunder": {
+        "old_id": 21,
+        "desc_en": "Snow showers and thunder",
+        "desc_nb": "Snøbyger og torden",
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nn": "Snøbyer og torevêr"
+    },
+    "heavysnowshowers": {
+        "variants": [
+            "day",
+            "night",
+            "polartwilight"
+        ],
+        "desc_nb": "Kraftige snøbyger",
+        "desc_nn": "Kraftige snøbyer",
+        "old_id": 45,
+        "desc_en": "Heavy snow showers"
+    },
+    "heavysnow": {
+        "desc_en": "Heavy snow",
+        "old_id": 50,
+        "desc_nb": "Kraftig snø",
+        "variants": null,
+        "desc_nn": "Kraftig snø"
+    },
+    "heavyrain": {
+        "desc_en": "Heavy rain",
+        "old_id": 10,
+        "desc_nb": "Kraftig regn",
+        "variants": null,
+        "desc_nn": "Kraftig regn"
+    },
+    "sleetandthunder": {
+        "desc_en": "Sleet and thunder",
+        "old_id": 23,
+        "desc_nn": "Sludd og torevêr",
+        "desc_nb": "Sludd og torden",
+        "variants": null
+    }
+}

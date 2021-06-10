@@ -9,21 +9,6 @@ const useStyles = makeStyles((theme: Theme) =>
       ...pageSpacing(theme),
       flexGrow: 1,
     },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'left',
-      color: theme.palette.text.secondary,
-    },
-    paperImage: {
-      textAlign: 'center',
-      padding: theme.spacing(2),
-    },
-    homePageImg: {
-      maxWidth: '100%',
-    },
-    table: {
-      margin: theme.spacing(2),
-    },
   }),
 );
 

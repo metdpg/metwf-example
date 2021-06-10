@@ -1,0 +1,135 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    38.7636,
+                    9.0054
+                ]
+            },
+            "properties": {
+                "name": "Addis Ababa"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    41.8661,
+                    9.5931
+                ]
+            },
+            "properties": {
+                "name": "Dire Dawa"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    39.4707,
+                    13.4974
+                ]
+            },
+            "properties": {
+                "name": "Mek'ele"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    37.4667,
+                    12.6000
+                ]
+            },
+            "properties": {
+                "name": "Gondar"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    37.3908,
+                    11.5936
+                ]
+            },
+            "properties": {
+                "name": "Bahir Dar"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    38.7523,
+                    9.0360
+                ]
+            },
+            "properties": {
+                "name": "Awasa"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    39.6333,
+                    11.1333
+                ]
+            },
+            "properties": {
+                "name": "Dessie"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    36.8344,
+                    7.6734
+                ]
+            },
+            "properties": {
+                "name": "Jimma"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    42.8,
+                    9.35
+                ]
+            },
+            "properties": {
+                "name": "Jijiga"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    38.6000,
+                    7.2000
+                ]
+            },
+            "properties": {
+                "name": "Shashamane"
+            }
+        }
+    ]
+}

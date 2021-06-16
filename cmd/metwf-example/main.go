@@ -1,6 +1,7 @@
 package main
 
 import (
+	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
@@ -25,10 +26,33 @@ func main() {
 
 	http.Handle("/api/proxy/", http.StripPrefix(("/api/proxy"), proxyUnchanged))
 	http.Handle("/api/pp/", http.StripPrefix("/api/pp", proxyWithPP))
-	http.Handle("/", cacheStatic(http.FileServer(clientFS)))
+
+	indexPage, err := clientFS.Open("/index.html")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	indexPageData, err := ioutil.ReadAll(indexPage)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	indexPage.Close()
+
+	http.Handle("/",
+		cacheStatic(
+			overrideNotFound(
+				http.FileServer(clientFS), indexPageData),
+		),
+	)
 
 	log.Println("Start up proxy server...")
 	log.Fatal(http.ListenAndServe((":8080"), nil))
+}
+
+func overrideNotFound(h http.Handler, notFoundText []byte) http.Handler {
+	handler := func(w http.ResponseWriter, r *http.Request) {
+		h.ServeHTTP(override404(w, notFoundText), r)
+	}
+	return http.HandlerFunc(handler)
 }
 
 func cacheStatic(h http.Handler) http.Handler {
@@ -41,4 +65,39 @@ func cacheStatic(h http.Handler) http.Handler {
 		h.ServeHTTP(w, r)
 	}
 	return http.HandlerFunc(cacheHandler)
+}
+
+func override404(w http.ResponseWriter, returnInstead []byte) http.ResponseWriter {
+	return &override404Handler{
+		w:             w,
+		returnInstead: returnInstead,
+		override:      false,
+	}
+}
+
+type override404Handler struct {
+	w             http.ResponseWriter
+	returnInstead []byte
+	override      bool
+}
+
+func (h *override404Handler) Header() http.Header {
+	return h.w.Header()
+}
+
+func (h *override404Handler) Write(data []byte) (int, error) {
+	if h.override {
+		log.Println("override")
+		h.w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		data = h.returnInstead
+	}
+	return h.w.Write(data)
+}
+
+func (h *override404Handler) WriteHeader(statusCode int) {
+	if statusCode == 404 {
+		h.override = true
+		return
+	}
+	h.w.WriteHeader(statusCode)
 }

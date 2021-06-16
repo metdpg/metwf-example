@@ -17,7 +17,7 @@ export default async function getForecast(q: Query|null): Promise<Forecast|null>
     if (q.altitude !== undefined)
         url += `&altitude=${q.altitude}`
 
-    console.log(url)
+    // console.log(url)
     const response = await fetch(url)
     return await response.json() as Forecast
 }

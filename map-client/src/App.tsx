@@ -6,12 +6,13 @@ import {
   Theme,
 } from '@material-ui/core';
 import { paletteMap, pageSpacing } from './utils/metMuiThemes'
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import createTheme from './utils/createTheme';
 import Header from './components/Header';
 import Map from './pages/Map';
 import ForecastList from './pages/ForecastList';
 import backGroundWaves from "./images/waves.png";
+import NotFound from './pages/NotFound';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -36,20 +37,15 @@ const App: React.FC = () => {
 
   return (
     <MuiThemeProvider theme={createTheme(paletteMap.get('teal_palette'), paletteMap.get('black_palette'))}>
+      <Header />
       <BrowserRouter>
         <div className={classes.root}>
-          <Route exact={true} path='/' render={() => (
-            <>
-              <Header />
-              <Map />
-            </>
-          )} />
-          <Route exact={true} path='/forecastlist' render={() => (
-            <>
-              <Header />
-              <ForecastList />
-            </>
-          )} />
+          <Switch>
+            <Route exact={true} path='/' component={Map} />
+            <Route exact={true} path='/map' component={Map} />
+            <Route exact={true} path='/forecastlist' component={ForecastList} />
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </BrowserRouter>
     </MuiThemeProvider>

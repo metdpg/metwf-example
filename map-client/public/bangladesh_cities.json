@@ -1,0 +1,109 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    90.41,
+                    23.81
+                ]
+            },
+            "properties": {
+                "name": "Dhaka"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    91.81,
+                    22.35
+                ]
+            },
+            "properties": {
+                "name": "Chittagong"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    88.64,
+                    24.40
+                ]
+            },
+            "properties": {
+                "name": "Rajshahi"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    89.54,
+                    22.84
+                ]
+            },
+            "properties": {
+                "name": "Khulna"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    91.86,
+                    24.92
+                ]
+            },
+            "properties": {
+                "name": "Sylhet"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    90.39,
+                    24.76
+                ]
+            },
+            "properties": {
+                "name": "Mymensingh"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    90.36,
+                    22.71
+                ]
+            },
+            "properties": {
+                "name": "Barisal"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    89.28,
+                    25.74
+                ]
+            },
+            "properties": {
+                "name": "Rangpur"
+            }
+        }
+    ]
+}

@@ -59,7 +59,7 @@ const allParameters: ParameterSpec[] = [
 ]
 
 
-const areas = ["Ethiopia", "Malawi", "Bangladesh"]
+const areas = ["Ethiopia", "Malawi", "Mali", "Bangladesh"]
 
 export default function ForecastList() {
     const [area, setArea] = React.useState<string>(areas[0])

@@ -1,0 +1,161 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8,
+                    12.65
+                ]
+            },
+            "properties": {
+                "name": "Bamako"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -6.259,
+                    13.44
+                ]
+            },
+            "properties": {
+                "name": "Ségou"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.667,
+                    11.318
+                ]
+            },
+            "properties": {
+                "name": "Sikasso"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -4.183,
+                    14.484
+                ]
+            },
+            "properties": {
+                "name": "Mopti"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -5.464,
+                    12.392
+                ]
+            },
+            "properties": {
+                "name": "Koutiala"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -0.045,
+                    16.272
+                ]
+            },
+            "properties": {
+                "name": "Gao"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -11.444,
+                    14.447
+                ]
+            },
+            "properties": {
+                "name": "Kayes"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -6.074,
+                    13.684
+                ]
+            },
+            "properties": {
+                "name": "Markala"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.034,
+                    13.573
+                ]
+            },
+            "properties": {
+                "name": "Kolokani"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -8.073,
+                    12.744
+                ]
+            },
+            "properties": {
+                "name": "Kati"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -7.483,
+                    11.418
+                ]
+            },
+            "properties": {
+                "name": "Bougouni"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    -3.007,
+                    16.773
+                ]
+            },
+            "properties": {
+                "name": "Timbuktu"
+            }
+        }
+    ]
+}

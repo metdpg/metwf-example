@@ -10,11 +10,6 @@ type ForecastGraphProps = {
 }
 
 type Params = {
-    temp: (number | null)[]
-    precip: (number | null)[]
-}
-
-type HourlyParams = {
     temp: number[]
     precip: number[]
 }
@@ -51,7 +46,7 @@ export default function ForecastGraph({ position }: ForecastGraphProps) {
     }
 }
 
-function echartsData(title: string, hours: string[], params: HourlyParams): EChartsOption {
+function echartsData(title: string, hours: string[], params: Params): EChartsOption {
     if (params.temp == null){
         return {}
     }
@@ -110,7 +105,7 @@ function echartsData(title: string, hours: string[], params: HourlyParams): ECha
 
 
 
-function hourlyParamValues(forecast: Forecast): HourlyParams {
+function hourlyParamValues(forecast: Forecast): Params {
     let temp_values: number[] = []
     let precip_values: number[] = []
 
@@ -153,58 +148,4 @@ function hourlyTimeLabels(forecast: Forecast){
         }
     })
     return hours
-}
-
-function allTimeLabels(forecast: Forecast) {
-    let start = forecast.properties.timeseries[0].time
-    let end = forecast.properties.timeseries[forecast.properties.timeseries.length - 1].time
-
-    let hours: string[] = []
-    for (let d = new Date(start); d <= new Date(end); d.setHours(d.getHours() + 1)) {
-        hours.push(d.toISOString())
-    }
-
-    return hours
-}
-
-function allParamValues(forecast: Forecast): Params {
-    let temp_values: (number | null)[] = []
-    let precip_values: (number | null)[] = []
-
-    forecast.properties.timeseries.forEach((step, index) => {
-        if (step.data.next_1_hours) {
-            let precip: number | undefined | null = step.data.next_1_hours?.details?.precipitation_amount
-            if (precip === undefined)
-                precip = null
-            precip_values.push(precip)
-
-            let temp: number | undefined | null = step.data.instant?.details?.air_temperature
-            if (temp === undefined)
-                temp = null
-            temp_values.push(temp)
-
-        } else if (step.data["next_6_hours"]) {
-            let precip: number | undefined | null = step.data.next_6_hours?.details?.precipitation_amount
-            if (precip === undefined)
-                precip = null
-            else
-                precip /= 6
-            for (let i = 0; i < 6; i++) {
-                precip_values.push(precip)
-            }
-
-            let temp: number | undefined | null = step.data.instant?.details?.air_temperature
-            if (temp === undefined)
-                temp = null
-            for (let i = 0; i < 5; i++)
-                temp_values.push(null)
-            temp_values.push(temp)
-
-        }
-    })
-
-    return {
-        temp: temp_values,
-        precip: precip_values
-    }
 }

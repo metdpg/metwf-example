@@ -3,7 +3,6 @@ import type { EChartsOption } from "echarts";
 import { useEffect, useState } from "react";
 import React from 'react';
 import getForecast, { Forecast } from '../../utils/forecast';
-import { maxHeaderSize } from 'http';
 
 type ForecastGraphProps = {
     position: L.LatLng
@@ -30,13 +29,12 @@ export default function ForecastGraph({ position }: ForecastGraphProps) {
         let hours: string[] = hourlyTimeLabels(forecast)
         let params = hourlyParamValues(forecast)
 
-        //let plotly_data = plotlyData(hours, params)
         let title = "Forecast for lat: " + forecast.geometry.coordinates[1] + ", long: " + forecast.geometry.coordinates[0]
 
         console.log(params.temp)
         return (
-            <ReactECharts option={echartsData(title, hours, params)}
-            ></ReactECharts>
+            <ReactECharts option={echartsData(title, hours, params)}>
+            </ReactECharts>
         );
     } else {
         return (<p>
@@ -112,22 +110,19 @@ function hourlyParamValues(forecast: Forecast): Params {
     let hours = 0
     forecast.properties.timeseries.forEach((step, _) => {
         if (step.data.next_1_hours) {
-            if (step.data.instant?.details) {
-                hours = hours + 1
-                let temp: number | undefined | null = step.data.instant?.details?.air_temperature
-                let precip: number | undefined | null = step.data.next_1_hours?.details?.precipitation_amount
-
-                if (temp !== undefined) {
-                    temp_values.push(temp)
-                }
-                if (precip !== undefined){
-                    precip_values.push(precip)
-                }
+            hours = hours + 1
+            let temp = step.data.instant?.details?.air_temperature
+            let precip = step.data.next_1_hours?.details?.precipitation_amount
+            if (temp !== undefined) {
+                temp_values.push(temp)
+            }
+            if (precip !== undefined){
+                precip_values.push(precip)
             }
         }
     })
 
-    if (hours != temp_values.length || hours != precip_values.length) {
+    if (hours !== temp_values.length || hours !== precip_values.length) {
         throw new Error("missing values in forecast.") 
     }
 
@@ -143,7 +138,7 @@ function hourlyTimeLabels(forecast: Forecast){
     forecast.properties.timeseries.forEach((step, _) => {
         if(step.data.next_1_hours){
             let d = new Date(step.time)
-            let timestamp = `${d.getFullYear()}-${d.getMonth()}-${d.getDay()} ${d.getHours()}`
+            let timestamp = `${d.getFullYear()}-${d.getMonth()}-${d.getUTCDate()} ${("0" + d.getHours()).slice(-2)}`
             hours.push(timestamp)
         }
     })

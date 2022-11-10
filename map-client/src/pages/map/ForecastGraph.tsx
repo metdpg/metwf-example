@@ -1,7 +1,9 @@
-import Plot from 'react-plotly.js';
+import ReactECharts from 'echarts-for-react';  // or var ReactECharts = require('echarts-for-react');
+import type { EChartsOption } from "echarts";
 import { useEffect, useState } from "react";
 import React from 'react';
 import getForecast, { Forecast } from '../../utils/forecast';
+import { maxHeaderSize } from 'http';
 
 type ForecastGraphProps = {
     position: L.LatLng
@@ -12,9 +14,9 @@ type Params = {
     precip: (number | null)[]
 }
 
-type PlotlyData = {
-    temp: Plotly.Data
-    precip: Plotly.Data
+type HourlyParams = {
+    temp: number[]
+    precip: number[]
 }
 
 export default function ForecastGraph({ position }: ForecastGraphProps) {
@@ -33,100 +35,139 @@ export default function ForecastGraph({ position }: ForecastGraphProps) {
         let hours: string[] = hourlyTimeLabels(forecast)
         let params = hourlyParamValues(forecast)
 
-        let plotly_data = plotlyData(hours, params)
+        //let plotly_data = plotlyData(hours, params)
+        let title = "Forecast for lat: " + forecast.geometry.coordinates[1] + ", long: " + forecast.geometry.coordinates[0]
 
-
+        console.log(params.temp)
         return (
-            <Plot
-                data={[plotly_data.temp, plotly_data.precip]}
-
-                layout={{
-                    width: 740,
-                    height: 400,
-                    title: "Forecast for lat: " + forecast.geometry.coordinates[1] + ", long: " + forecast.geometry.coordinates[0],
-                    xaxis: {
-                        title: 'Time',
-                        showgrid: true,
-                        zeroline: false
-                    },
-                    yaxis: {
-                        title: 'Celsius',
-                        zeroline: false,
-                        showgrid: false,
-                        showline: true
-                    },
-                    yaxis2: {
-                        title: "Precipitation (mm/h)",
-                        zeroline: false,
-                        showline: false,
-                        showgrid: false,
-                        side: "right",
-                        overlaying: "y"
-
-                    },
-                    legend: {
-                        orientation: "v",
-                        yanchor: "bottom",
-                        xanchor: "left"
-                    },
-                    margin: {
-                        pad: 10
-                    }
-
-                }}
-
-                config={{ displayModeBar: false }}
-            />
-
-        )
+            <ReactECharts option={echartsData(title, hours, params)}
+            ></ReactECharts>
+        );
     } else {
         return (<p>
             Waiting...
         </p>
         )
     }
-
 }
 
-function plotlyData(hours: string[], params: Params): PlotlyData {
-    const temperature: Plotly.Data =
-    {
-        x: hours,
-        y: params.temp,
-        type: "scatter",
-        name: "Temperature",
-        mode: "lines",
-        yaxis: "y",
-        visible: true,
-        connectgaps: true,
-        marker: {
-            color: 'rgb(220,20,60)',
-            size: 12
-        },
+function echartsData(title: string, hours: string[], params: HourlyParams): EChartsOption {
+    if (params.temp == null){
+        return {}
     }
 
-    const precipitation: Plotly.Data =
-    {
-        x: hours,
-        y: params.precip,
-        type: "bar",
-        name: "Precipitation",
-        yaxis: "y2",
-        opacity: 0.3,
-        visible: true,
-        marker: {
-            color: 'rgb(30,144,255)',
+    const options: EChartsOption = {
+        title: {
+            text: title
         },
+        xAxis: {
+            type: 'category',
+            data: hours,
+            axisTick: {
+                show: true,
+            }
+        },
+        yAxis: [
+            {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value} °C'
+                },
+                name: "Temperature",
+            },
+            {
+                type: 'value',
+                name: 'Precipitation',
+                min: 0,
+                max: Math.round(Math.max(...params.precip)),
+                axisLabel: {
+                    formatter: '{value} mm/h'
+                },
+                splitLine: {
+                    show: false,
+                }
+            },
+        ],
+        series: [
+          {
+            data: params.temp,
+            type: 'line',
+            showSymbol: false,
+            color: 'red',
+            yAxisIndex: 0,
+          },
+          {
+            data: params.precip,
+            type: 'bar',
+            color: 'lightblue',
+            yAxisIndex: 1,
+          }
+        ]
+      };
+
+      return options
+}
+
+
+
+function hourlyParamValues(forecast: Forecast): HourlyParams {
+    let temp_values: number[] = []
+    let precip_values: number[] = []
+
+    let hours = 0
+    forecast.properties.timeseries.forEach((step, _) => {
+        if (step.data.next_1_hours) {
+            if (step.data.instant?.details) {
+                hours = hours + 1
+                let temp: number | undefined | null = step.data.instant?.details?.air_temperature
+                let precip: number | undefined | null = step.data.next_1_hours?.details?.precipitation_amount
+
+                if (temp !== undefined) {
+                    temp_values.push(temp)
+                }
+                if (precip !== undefined){
+                    precip_values.push(precip)
+                }
+            }
+        }
+    })
+
+    if (hours != temp_values.length || hours != precip_values.length) {
+        throw new Error("missing values in forecast.") 
     }
 
     return {
-        temp: temperature,
-        precip: precipitation
+        temp: temp_values,
+        precip: precip_values
     }
 }
 
+function hourlyTimeLabels(forecast: Forecast){
 
-function hourlyParamValues(forecast: Forecast): Params {
+    let hours: string[] = []
+    forecast.properties.timeseries.forEach((step, _) => {
+        if(step.data.next_1_hours){
+            let d = new Date(step.time)
+            let timestamp = `${d.getFullYear()}-${d.getMonth()}-${d.getDay()} ${d.getHours()}`
+            hours.push(timestamp)
+        }
+    })
+    return hours
+}
+
+function allTimeLabels(forecast: Forecast) {
+    let start = forecast.properties.timeseries[0].time
+    let end = forecast.properties.timeseries[forecast.properties.timeseries.length - 1].time
+
+    let hours: string[] = []
+    for (let d = new Date(start); d <= new Date(end); d.setHours(d.getHours() + 1)) {
+        hours.push(d.toISOString())
+    }
+
+    return hours
+}
+
+function allParamValues(forecast: Forecast): Params {
     let temp_values: (number | null)[] = []
     let precip_values: (number | null)[] = []
 
@@ -166,16 +207,4 @@ function hourlyParamValues(forecast: Forecast): Params {
         temp: temp_values,
         precip: precip_values
     }
-}
-
-function hourlyTimeLabels(forecast: Forecast) {
-    let start = forecast.properties.timeseries[0].time
-    let end = forecast.properties.timeseries[forecast.properties.timeseries.length - 1].time
-
-    let hours: string[] = []
-    for (let d = new Date(start); d <= new Date(end); d.setHours(d.getHours() + 1)) {
-        hours.push(d.toISOString())
-    }
-
-    return hours
 }

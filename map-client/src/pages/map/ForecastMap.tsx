@@ -34,9 +34,11 @@ function ForecastPosition() {
     })
 
     return position === null ? null : (
-        <Popup position={ position } >
-            <ForecastGraph position={ position }  />
-        </Popup>
+            <Popup maxWidth={4000} position={ position } >
+                <div style={{ width: "70vw" }}>
+                    <ForecastGraph position={ position }  /> 
+                </div>
+            </Popup>           
     )
 }
 
@@ -64,7 +66,7 @@ export default function ForecastMap() {
     // }, [])
 
     const style = {
-        height: 'calc(100vh - 130px)',
+        height: 'calc(100vh - 100px)',
         marginBottom: '10px'
     }
     

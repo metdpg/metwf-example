@@ -79,12 +79,12 @@ export const pageSpacing = (theme: Theme) => {
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(1),
     [theme.breakpoints.up('sm')]: {
-        paddingLeft: theme.spacing(10),
-        paddingRight: theme.spacing(10),
+        paddingLeft: theme.spacing(5),
+        paddingRight: theme.spacing(5),
     },
     [theme.breakpoints.up('lg')]: {
-        paddingLeft: theme.spacing(20),
-        paddingRight: theme.spacing(20),
+        paddingLeft: theme.spacing(10),
+        paddingRight: theme.spacing(10),
     }
 }
 }

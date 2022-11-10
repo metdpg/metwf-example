@@ -1,12 +1,12 @@
 # FIRST STAGE: build the client.
-FROM node:14-buster-slim AS client-app
+FROM node:18-buster-slim AS client-app
 WORKDIR /build/app
 
 COPY map-client/ map-client/
 RUN cd map-client && npm ci && npm run build
 
 # SECOND STAGE:  build the server.
-FROM golang:1.16 AS server-app
+FROM golang:1.19 AS server-app
 WORKDIR /build/app
 
 # We want to populate the module cache based on the go.{mod,sum} files.

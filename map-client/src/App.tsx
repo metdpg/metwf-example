@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 import { paletteMap, pageSpacing } from './utils/metMuiThemes'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import createTheme from './utils/createTheme';
+import createProjectTheme from './utils/createTheme';
 import Header from './components/Header';
 import Map from './pages/Map';
 import ForecastList from './pages/ForecastList';
@@ -36,7 +36,7 @@ const App: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <MuiThemeProvider theme={createTheme(paletteMap.get('teal_palette'), paletteMap.get('black_palette'))}>
+    <MuiThemeProvider theme={createProjectTheme(paletteMap.get('teal_palette'), paletteMap.get('black_palette'))}>
       <Header />
       <BrowserRouter>
         <div className={classes.root}>

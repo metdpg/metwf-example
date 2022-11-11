@@ -3,6 +3,8 @@ FROM node:18-buster-slim AS client-app
 WORKDIR /build/app
 
 COPY map-client/ map-client/
+
+ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN cd map-client && npm ci && npm run build
 
 # SECOND STAGE:  build the server.

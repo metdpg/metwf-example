@@ -28,8 +28,8 @@ function ForecastPosition() {
     })
 
     return position === null ? null : (
-            <Popup maxWidth={4000} position={ position } >
-                <div style={{ width: "70vw" }}>
+            <Popup autoPan={true} maxWidth={4000} position={ position } >
+                <div style={{ width: "70vw", height: "35vh" }}>
                     <ForecastGraph position={ position }  /> 
                 </div>
             </Popup>           

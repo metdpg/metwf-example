@@ -1,8 +1,8 @@
-import {Color, createMuiTheme, SimplePaletteColorOptions} from "@material-ui/core";
+import {Color, createTheme, SimplePaletteColorOptions} from "@material-ui/core";
 
-function createTheme(primary: SimplePaletteColorOptions | Partial<Color> | undefined = undefined, 
+function createProjectTheme(primary: SimplePaletteColorOptions | Partial<Color> | undefined = undefined, 
   secondary: SimplePaletteColorOptions | Partial<Color> | undefined = undefined) {
-    return createMuiTheme({
+    return createTheme({
         palette: {
             primary: Object.assign({}, primary, {
                 // special primary color rules can be added here
@@ -17,4 +17,4 @@ function createTheme(primary: SimplePaletteColorOptions | Partial<Color> | undef
 
 }
 
-export default (createTheme);
+export default (createProjectTheme);

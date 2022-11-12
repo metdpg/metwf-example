@@ -4,7 +4,8 @@ Popup timeseries for any point, centered on Ethiopia.
 How to use:
 ```
 git clone <repo>
-cd gdpg-ethiopia
+cd metwf-example/map-client
+export NODE_OPTIONS=--openssl-legacy-provider
 npm install
 npm start
 ```

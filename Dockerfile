@@ -1,5 +1,5 @@
 # FIRST STAGE: build the client.
-FROM node:18-buster-slim AS client-app
+FROM node:23-bookworm-slim AS client-app
 WORKDIR /build/app
 
 COPY map-client/ map-client/
@@ -8,7 +8,7 @@ ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN cd map-client && npm ci && npm run build
 
 # SECOND STAGE:  build the server.
-FROM golang:1.19 AS server-app
+FROM golang:1.23 AS server-app
 WORKDIR /build/app
 
 # We want to populate the module cache based on the go.{mod,sum} files.
@@ -28,7 +28,7 @@ COPY --from=client-app /build/app/map-client/build/ ./internal/client/build/
 RUN go build -o metwf-example ./cmd/metwf-example
 
 # THIRD STAGE: create the app runtime image.
-FROM ubuntu:focal
+FROM ubuntu:noble
 
 COPY --from=server-app /build/app/metwf-example /app/
 

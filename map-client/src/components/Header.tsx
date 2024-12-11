@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import logo from '../images/met_logo.png';
-import { AppBar, Toolbar } from '@material-ui/core';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import Menu from './Menu';
 import { pageSpacing } from '../utils/metMuiThemes';
 
@@ -40,7 +40,7 @@ const Header: React.FC = () => {
     <div className={styles.root}>
       <AppBar position={"static"} >
         <Toolbar className={styles.toolBar}>
-          <img className={styles.logo} src={logo} alt="met logo" />
+          <Typography>Example site</Typography>
           <div className={styles.grow} />
           <Menu />
         </Toolbar>

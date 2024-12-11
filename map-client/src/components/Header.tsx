@@ -1,6 +1,5 @@
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import logo from '../images/met_logo.png';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import Menu from './Menu';
 import { pageSpacing } from '../utils/metMuiThemes';

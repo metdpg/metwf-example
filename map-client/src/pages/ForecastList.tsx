@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { Grid } from '@material-ui/core';
+import React, { useEffect, ReactNode } from 'react';
+import Grid from '@mui/material/Grid2';
+import { SelectChangeEvent } from '@mui/material';
 import { FeatureCollection, Point } from 'geojson';
 import Location from './forecastlist/Location';
 import ForecastTable from './forecastlist/ForecastTable';
@@ -77,11 +78,11 @@ export default function ForecastList() {
     }, [area])
     useEffect(() => setLocation(allLocations[0]), [allLocations])
 
-    const handleAreaUpdate = (event: React.ChangeEvent<{ value: string }>) => {
+    const handleAreaUpdate = (event: SelectChangeEvent<string>, child: ReactNode) => {
         setArea(event.target.value)
     }
 
-    const handleLocationUpdate = (event: React.ChangeEvent<{ value: any }>) => {
+    const handleLocationUpdate = (event: SelectChangeEvent<string>, child: ReactNode) => {
         const name = event.target.value as string
         for (const loc of allLocations) {
             if (loc.name === name) {
@@ -91,7 +92,7 @@ export default function ForecastList() {
         }
     }
 
-    const handleParameterUpdate = (event: React.ChangeEvent<{ value: string[] }>) => {
+    const handleParameterUpdate = (event: SelectChangeEvent<string[]>, child: ReactNode) => {
         const selectedParameters: ParameterSpec[] = []
         for (const parameter of allParameters) {
             for (const selectedName of event.target.value) {
@@ -105,13 +106,13 @@ export default function ForecastList() {
 
 
     return (
-        <Grid container direction="column">
-            <Grid container item spacing={2}>
+        <Grid sx={{padding:4 }} container direction="column">
+            <Grid container spacing={2}>
                 <AreaSelect areas={areas} current={area} onChange={handleAreaUpdate} />
                 <LocationSelect locations={allLocations} active={location} onChange={handleLocationUpdate} />
                 <ParameterSelect availableParameters={allParameters} current={parameters} onChange={handleParameterUpdate} />
             </Grid>
-            <Grid item>
+            <Grid>
                 <ForecastTable location={location} parameters={parameters}></ForecastTable>
             </Grid>
         </Grid>

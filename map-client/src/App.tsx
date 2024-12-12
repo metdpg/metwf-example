@@ -1,54 +1,29 @@
 import React from 'react';
-import { MuiThemeProvider } from '@material-ui/core';
-import {
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core';
-import { paletteMap, pageSpacing } from './utils/metMuiThemes'
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ThemeProvider, Box } from '@mui/material';
+import { paletteMap } from './utils/metMuiThemes'
+import { BrowserRouter, Route, Routes } from 'react-router';
 import createProjectTheme from './utils/createTheme';
 import Header from './components/Header';
 import Map from './pages/Map';
 import ForecastList from './pages/ForecastList';
-import backGroundWaves from "./images/waves.png";
+// import backGroundWaves from "./images/waves.png";
 import NotFound from './pages/NotFound';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    '@global': {
-      '.global-root': {
-        width: '100%',
-        maxWidth: '1440px',
-        margin: '0px auto',
-      },
-    },
-    root: {
-      ...pageSpacing(theme),
-      height: '100%',
-      backgroundImage: `url(${backGroundWaves})`,
-      flexGrow: 1,
-    },
-  })
-);
-
 const App: React.FC = () => {
-  const classes = useStyles();
-
   return (
-    <MuiThemeProvider theme={createProjectTheme(paletteMap.get('teal_palette'), paletteMap.get('black_palette'))}>
+    <ThemeProvider theme={createProjectTheme(paletteMap.get('teal_palette'), paletteMap.get('black_palette'))}>
       <Header />
       <BrowserRouter>
-        <div className={classes.root}>
-          <Switch>
-            <Route exact={true} path='/' component={Map} />
-            <Route exact={true} path='/map' component={Map} />
-            <Route exact={true} path='/forecastlist' component={ForecastList} />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
+          <Box sx={{flex: 1}}>
+            <Routes>
+              <Route path='/' element={<Map />} />
+              <Route path='/map' element={<Map />} />
+              <Route path='/forecastlist' element={<ForecastList />} />
+              <Route element={<NotFound />} />
+            </Routes>
+          </Box>
       </BrowserRouter>
-    </MuiThemeProvider>
+    </ThemeProvider>
   );
 };
 

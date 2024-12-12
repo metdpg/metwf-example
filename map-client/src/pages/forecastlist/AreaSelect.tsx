@@ -1,33 +1,38 @@
 import React from 'react'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import { useTheme } from '@mui/material/styles';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { SelectChangeEvent } from '@mui/material/Select';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 120,
-        }
-    }),
-);
+import { ReactNode } from 'react';
+
+// const useStyles = makeStyles((theme: Theme) =>
+//     createStyles({
+//         formControl: {
+//             margin: theme.spacing(1),
+//             minWidth: 120,
+//         }
+//     }),
+// );
 
 
 interface Props {
     areas: string[]
     current: string
-    onChange: (event: React.ChangeEvent<{ value: any }>) => void,
+    onChange: (event: SelectChangeEvent<string>, child: ReactNode) => void
+    //event: React.ChangeEvent<{ value: any }>) => void,
 }
 
 function AreaSelect(props: Props) {
-    const classes = useStyles();
+    const theme = useTheme();
 
     return (
-        <FormControl className={classes.formControl}>
+        <FormControl sx={{ margin: theme.spacing(1), minWidth: 120, border:0 }}>
             <InputLabel id="location-select-label">Area</InputLabel>
             <Select
+                sx={{ border:0 }}
                 labelId="area-select-label"
                 id="area-select"
                 value={props.current}

@@ -33,8 +33,7 @@ export default function ForecastGraph({ position }: ForecastGraphProps) {
         let title = "Forecast for lat: " + forecast.geometry.coordinates[1] + ", long: " + forecast.geometry.coordinates[0]
 
         return (
-            <ReactECharts option={echartsData(title, params.timesteps, params)}>
-            </ReactECharts>
+            <ReactECharts option={echartsData(title, params.timesteps, params)} />
         );
     } else {
         return (<p>

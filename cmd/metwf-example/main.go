@@ -1,7 +1,7 @@
 package main
 
 import (
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"net/url"
@@ -31,7 +31,7 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	indexPageData, err := ioutil.ReadAll(indexPage)
+	indexPageData, err := io.ReadAll(indexPage)
 	if err != nil {
 		log.Fatalln(err)
 	}

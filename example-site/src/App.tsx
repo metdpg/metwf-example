@@ -6,8 +6,10 @@ import createProjectTheme from './utils/createTheme';
 import Header from './components/Header';
 import Map from './pages/Map';
 import ForecastList from './pages/ForecastList';
-// import backGroundWaves from "./images/waves.png";
+import About from './pages/About';
 import NotFound from './pages/NotFound';
+
+// import backGroundWaves from "./images/waves.png";
 
 const App: React.FC = () => {
   return (
@@ -19,6 +21,7 @@ const App: React.FC = () => {
               <Route path='/' element={<Map />} />
               <Route path='/map' element={<Map />} />
               <Route path='/forecastlist' element={<ForecastList />} />
+              <Route path='/about' element={<About />} />
               <Route element={<NotFound />} />
             </Routes>
           </Box>

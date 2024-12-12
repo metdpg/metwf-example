@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, Box, Link, useTheme } from '@mui/material';
 import Menu from './Menu';
 
 const Header: React.FC = () => {
@@ -8,7 +8,7 @@ const Header: React.FC = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h5" sx={{ flexGrow: 2 }}>
-            Example site
+            <Link color="inherit" underline="none" href="/">Example site</Link>
           </Typography>
           <Box sx={{flexGrow: 0}}>
             <Menu />

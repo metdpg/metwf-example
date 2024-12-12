@@ -34,6 +34,7 @@ export default function DemoMenu() {
                 <MenuList autoFocusItem={open} id="menu-list-grow" >
                   <MenuItem onClick={() => window.open("/", "_self")}>Map</MenuItem>
                   <MenuItem onClick={() => window.open("/forecastlist", "_self")}>Forecast List</MenuItem>
+                  <MenuItem onClick={() => window.open("/about", "_self")}>About</MenuItem>
                 </MenuList>
               </ClickAwayListener>
             </Paper>

@@ -30,7 +30,7 @@ export default function LocationSelect(props: Props) {
         value = props.active.name
 
     return (
-        <FormControl sx={{ margin: theme.spacing(1), minWidth: 120, }}>
+        <FormControl variant="standard" sx={{ margin: theme.spacing(1), minWidth: 120, }}>
             <InputLabel id="location-select-label">Location</InputLabel>
             <Select
                 labelId="location-select-label"

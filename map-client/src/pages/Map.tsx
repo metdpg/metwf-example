@@ -1,9 +1,13 @@
 import React from 'react';
+import { Box } from '@mui/material';
 import ForecastMap from './map/ForecastMap'
 
 const Map: React.FC = () => {
   return (
-      <ForecastMap />
+      <Box sx={{ zIndex: 2 }}>
+          <ForecastMap />
+      </Box>
+
   );
 }
 

@@ -26,7 +26,7 @@ function ParameterSelect(props: Props) {
 
     return (
         <div>
-            <FormControl sx={{ margin: theme.spacing(1), minWidth: 120, }}>
+            <FormControl variant="standard" sx={{ margin: theme.spacing(1), minWidth: 120, }}>
                 <InputLabel id="parameter-select-label">Parameters</InputLabel>
                 <Select
                     labelId="parameter-select-label"

@@ -29,10 +29,9 @@ function AreaSelect(props: Props) {
     const theme = useTheme();
 
     return (
-        <FormControl sx={{ margin: theme.spacing(1), minWidth: 120, border:0 }}>
-            <InputLabel id="location-select-label">Area</InputLabel>
+        <FormControl variant="standard" sx={{ margin: theme.spacing(1), minWidth: 120}}>
+            <InputLabel id="area-select-label">Area</InputLabel>
             <Select
-                sx={{ border:0 }}
                 labelId="area-select-label"
                 id="area-select"
                 value={props.current}

@@ -2,10 +2,10 @@
 FROM node:23-bookworm-slim AS client-app
 WORKDIR /build/app
 
-COPY map-client/ map-client/
+COPY example-site/ example-site/
 
 ENV NODE_OPTIONS=--openssl-legacy-provider
-RUN cd map-client && npm ci && npm run build
+RUN cd example-site && npm ci && npm run build
 
 # SECOND STAGE:  build the server.
 FROM golang:1.23 AS server-app
@@ -23,7 +23,7 @@ COPY cmd/ cmd/
 COPY internal/ internal/
 
 # Copy client app for embedding in the go client.
-COPY --from=client-app /build/app/map-client/build/ ./internal/client/build/
+COPY --from=client-app /build/app/example-site/build/ ./internal/client/build/
 
 RUN go build -o metwf-example ./cmd/metwf-example
 

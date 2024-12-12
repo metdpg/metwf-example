@@ -11,7 +11,8 @@ import ParameterSpec, { displayName } from './ParameterSpec';
 const forecastHeaderStyle = {
     textAlign: "center",
     fontWeight: "bolder",
-    color: "#777777"
+    color: "#777777",
+    bgcolor: "#fafafa",
 }
 
 interface Props {
@@ -58,8 +59,6 @@ interface HeaderProps {
 }
 
 function ForecastTableHeader(props: HeaderProps) {
-    // const st: CSSProperties = { textAlign: "left" }
-
     function detailsHeader(parameters: ParameterSpec[]) {
         let h = [
             <TableCell key='header_a' sx={{ ...forecastHeaderStyle, textAlign: "left"}} ></TableCell>,

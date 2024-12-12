@@ -5,20 +5,10 @@ import ParameterSpec, { displayName } from './ParameterSpec';
 
 import { ReactNode } from 'react';
 
-// const useStyles = makeStyles((theme: Theme) =>
-//     createStyles({
-//         formControl: {
-//             margin: theme.spacing(1),
-//             minWidth: 120,
-//         }
-//     }),
-// );
-
 interface Props {
     availableParameters: ParameterSpec[]
     current: ParameterSpec[]
     onChange: (event: SelectChangeEvent<string[]>, child: ReactNode) => void
-    //@(event: React.ChangeEvent<{ value: any }>) => void
 }
 
 function ParameterSelect(props: Props) {

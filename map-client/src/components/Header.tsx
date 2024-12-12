@@ -19,31 +19,4 @@ const Header: React.FC = () => {
   )
 };
 
-// const Header: React.FC = () => {
-//   const theme = useTheme();
-//   return (
-//     <Box
-//     sx={{
-//       width: '100%',
-//       paddingBottom: theme.spacing(1),
-//       marginBottom: theme.spacing(1),
-//       paddingLeft: theme.spacing(0),
-//       paddingRight: theme.spacing(0),
-//     }}
-//   >
-//       <AppBar position={"static"} >
-//         <Toolbar sx={(theme) => pageSpacing(theme)}>
-//           <Box sx={{ flex:1, flexGrow: 1, 
-//             flexDirection: 'row', 
-//             justifyContent: "space-between" }}
-//           >
-//             <Typography>Example site</Typography>
-//             <Menu />
-//           </Box>
-//         </Toolbar>
-//       </AppBar>
-//     </Box>
-//   );
-// };
-
 export default Header;

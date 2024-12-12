@@ -14,30 +14,6 @@ const forecastHeaderStyle = {
     color: "#777777"
 }
 
-// const useStyles = makeStyles((theme: Theme) =>
-//     createStyles({
-//         tableContainer: {
-//             maxHeight: '49em',
-//         },
-//         forecastHeader: {
-//             textAlign: "center",
-//             fontWeight: "bolder",
-//             color: "#777777"
-//         },
-//         numericForecast: {
-//             textAlign: "center",
-//             color: theme.palette.primary.main,
-//         },
-//         numericForecastCorrected: {
-//             textAlign: "center",
-//             color: theme.palette.secondary.main,
-//         },
-//         timeIndicator: {
-//             fontWeight: "bold",
-//             color: "#777777"
-//         }
-//     }))
-
 interface Props {
     location: Location | null
     parameters: ParameterSpec[]

@@ -3,19 +3,6 @@ import { useTheme } from '@mui/material';
 import { ClickAwayListener, Grow, IconButton, MenuItem, MenuList, Paper, Popper, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
-// const useStyles = makeStyles((theme: Theme) =>
-//   createStyles({
-//     root: {
-//       display: 'flex',
-//       zIndex: 10000,
-//     },
-//     paper: {
-//       marginRight: theme.spacing(0),
-//     },
-//     icon: {
-//       color: theme.palette.primary.contrastText,
-//     }
-//   }));
 
 export default function DemoMenu() {
   const [open, setOpen] = React.useState(false);

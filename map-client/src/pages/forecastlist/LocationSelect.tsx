@@ -8,15 +8,6 @@ import Location from './Location';
 
 import { ReactNode } from 'react';
 
-// const useStyles = makeStyles((theme: Theme) =>
-//     createStyles({
-//         formControl: {
-//             margin: theme.spacing(1),
-//             minWidth: 120,
-//         }
-//     }),
-// );
-
 interface Props {
     locations: Location[],
     active: Location | null,

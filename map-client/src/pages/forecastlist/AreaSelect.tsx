@@ -8,21 +8,11 @@ import { SelectChangeEvent } from '@mui/material/Select';
 
 import { ReactNode } from 'react';
 
-// const useStyles = makeStyles((theme: Theme) =>
-//     createStyles({
-//         formControl: {
-//             margin: theme.spacing(1),
-//             minWidth: 120,
-//         }
-//     }),
-// );
-
 
 interface Props {
     areas: string[]
     current: string
     onChange: (event: SelectChangeEvent<string>, child: ReactNode) => void
-    //event: React.ChangeEvent<{ value: any }>) => void,
 }
 
 function AreaSelect(props: Props) {

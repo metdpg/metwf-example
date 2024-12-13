@@ -1,4 +1,4 @@
-import {Color, createTheme, SimplePaletteColorOptions} from "@material-ui/core";
+import {Color, createTheme, SimplePaletteColorOptions} from "@mui/material";
 
 function createProjectTheme(primary: SimplePaletteColorOptions | Partial<Color> | undefined = undefined, 
   secondary: SimplePaletteColorOptions | Partial<Color> | undefined = undefined) {

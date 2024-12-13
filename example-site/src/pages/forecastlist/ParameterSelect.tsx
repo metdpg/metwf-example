@@ -1,29 +1,22 @@
 import React from 'react'
-import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from '@mui/material';
+import { useTheme } from '@mui/material';
 import ParameterSpec, { displayName } from './ParameterSpec';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 120,
-        }
-    }),
-);
+import { ReactNode } from 'react';
 
 interface Props {
     availableParameters: ParameterSpec[]
     current: ParameterSpec[]
-    onChange: (event: React.ChangeEvent<{ value: any }>) => void
+    onChange: (event: SelectChangeEvent<string[]>, child: ReactNode) => void
 }
 
 function ParameterSelect(props: Props) {
-    const classes = useStyles();
+    const theme = useTheme();
 
     return (
         <div>
-            <FormControl className={classes.formControl}>
+            <FormControl variant="standard" sx={{ margin: theme.spacing(1), minWidth: 120, }}>
                 <InputLabel id="parameter-select-label">Parameters</InputLabel>
                 <Select
                     labelId="parameter-select-label"

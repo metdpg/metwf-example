@@ -2,7 +2,6 @@ import React from 'react';
 import weather_icon_legends from './weather_icon_legends.json'
 
 
-
 function WeatherIcon(props: { symbolCode?: string, width: string}) {
     if (props.symbolCode === undefined) {
         return <div />

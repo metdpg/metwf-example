@@ -7,7 +7,6 @@ export type Forecast = definitions["forecast"]
 
 const base_url = 'https://api.met.no/weatherapi/locationforecast/2.0/complete.json?'
 
-
 export default async function getForecast(q: Query|null): Promise<Forecast|null> {
     if (!q)
         return null

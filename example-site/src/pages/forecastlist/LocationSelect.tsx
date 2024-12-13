@@ -1,35 +1,27 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import { useTheme, SelectChangeEvent } from '@mui/material';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 import Location from './Location';
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        formControl: {
-            margin: theme.spacing(1),
-            minWidth: 120,
-        }
-    }),
-);
+import { ReactNode } from 'react';
 
 interface Props {
     locations: Location[],
     active: Location | null,
-    onChange: (event: React.ChangeEvent<{ value: any }>) => void,
+    onChange: (event: SelectChangeEvent<string>, child: ReactNode) => void
 }
 
 export default function LocationSelect(props: Props) {
-    const classes = useStyles();
-
+    const theme = useTheme();
     let value = ""
     if (props.active)
         value = props.active.name
 
     return (
-        <FormControl className={classes.formControl}>
+        <FormControl variant="standard" sx={{ margin: theme.spacing(1), minWidth: 120, }}>
             <InputLabel id="location-select-label">Location</InputLabel>
             <Select
                 labelId="location-select-label"

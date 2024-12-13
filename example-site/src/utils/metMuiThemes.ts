@@ -4,7 +4,7 @@
  * for more info see: https://blest.met.no/intranett/_attachment/1712?_ts=1490d5de31a
  */
 
-import { SimplePaletteColorOptions, Theme } from "@material-ui/core/styles";
+import { SimplePaletteColorOptions, Theme } from "@mui/material";
 
 export const teal_palette: SimplePaletteColorOptions =  {
     light: '#BADEE4',

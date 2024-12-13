@@ -1,37 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { createStyles, makeStyles, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Theme, Typography } from '@material-ui/core'
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, useTheme, Typography } from '@mui/material'
 import WeatherIcon from './WeatherIcon'
 import Location from './Location'
 import getForecast, { Forecast } from '../../utils/forecast';
 import { definitions } from '../../utils/locationforecast';
 import correct from '../../utils/forecast_correct';
-import { CSSProperties } from '@material-ui/styles';
 import ParameterSpec, { displayName } from './ParameterSpec';
 
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        tableContainer: {
-            maxHeight: '49em',
-        },
-        forecastHeader: {
-            textAlign: "center",
-            fontWeight: "bolder",
-            color: "#777777"
-        },
-        numericForecast: {
-            textAlign: "center",
-            color: theme.palette.primary.main,
-        },
-        numericForecastCorrected: {
-            textAlign: "center",
-            color: theme.palette.secondary.main,
-        },
-        timeIndicator: {
-            fontWeight: "bold",
-            color: "#777777"
-        }
-    }))
+const forecastHeaderStyle = {
+    textAlign: "center",
+    fontWeight: "bolder",
+    color: "#777777",
+    bgcolor: "#fafafa",
+}
 
 interface Props {
     location: Location | null
@@ -40,8 +22,6 @@ interface Props {
 
 
 export default function ForecastTable(props: Props) {
-    const classes = useStyles()
-
     const [forecast, setForecast] = useState<Forecast | null>(null)
 
     useEffect(() => {
@@ -62,7 +42,7 @@ export default function ForecastTable(props: Props) {
 
 
     return (
-        <TableContainer className={classes.tableContainer} component={Paper}>
+        <TableContainer sx={{maxHeight: '49em'}} component={Paper}>
             <Table stickyHeader>
                 <ForecastTableHeader forecast={forecast} parameters={props.parameters} />
                 <ForecastTableBody forecast={forecast} parameters={props.parameters} />
@@ -79,18 +59,14 @@ interface HeaderProps {
 }
 
 function ForecastTableHeader(props: HeaderProps) {
-    const classes = useStyles()
-
-    const st: CSSProperties = { textAlign: "left" }
-
     function detailsHeader(parameters: ParameterSpec[]) {
         let h = [
-            <TableCell key='header_a' className={classes.forecastHeader} style={st} ></TableCell>,
-            <TableCell key='header_b' className={classes.forecastHeader}></TableCell>
+            <TableCell key='header_a' sx={{ ...forecastHeaderStyle, textAlign: "left"}} ></TableCell>,
+            <TableCell key='header_b' sx={forecastHeaderStyle}></TableCell>
         ]
         for (const p of parameters) {
-            h.push(<TableCell className={classes.forecastHeader} key={"details_header_model_" + p.name}>Model</TableCell>)
-            h.push(<TableCell className={classes.forecastHeader} key={"details_header_corrected_" + p.name}>Corrected</TableCell>)
+            h.push(<TableCell sx={forecastHeaderStyle} key={"details_header_model_" + p.name}>Model</TableCell>)
+            h.push(<TableCell sx={forecastHeaderStyle} key={"details_header_corrected_" + p.name}>Corrected</TableCell>)
         }
         return h
     }
@@ -103,13 +79,12 @@ function ForecastTableHeader(props: HeaderProps) {
             <TableRow key='parameters_header'>
                 <TableCell
                     key='details_header_time'
-                    className={classes.forecastHeader}
-                    style={st}>
+                    sx={{...forecastHeaderStyle, textAlign: "left"}}>
                     Time
                 </TableCell>
                 <TableCell
                     key='details_header_symbol'
-                    className={classes.forecastHeader} />
+                    sx={forecastHeaderStyle} />
 
                 {props.parameters.map((p) => {
                     let units = props.forecast.properties.meta.units[p.name]
@@ -117,7 +92,7 @@ function ForecastTableHeader(props: HeaderProps) {
                         units = "?"
                     }
                     const headerTitle: string = `${displayName(p)} (${units})`
-                    return <TableCell className={classes.forecastHeader} key={"head_" + p.name} colSpan={2}>{headerTitle}</TableCell>
+                    return <TableCell sx={forecastHeaderStyle} key={"head_" + p.name} colSpan={2}>{headerTitle}</TableCell>
                 })}
 
             </TableRow>
@@ -131,12 +106,12 @@ interface TableBodyProps {
 }
 
 function ForecastTableBody(props: TableBodyProps) {
-    const classes = useStyles()
+    const theme = useTheme();
 
     function forecastValues(time: string, timestep: definitions["forecast_timestep"], parameters: ParameterSpec[]) {
         let cells = [
             <TableCell
-                className={classes.timeIndicator}
+                sx={{ fontWeight: "bold", color: "#777777" }}
                 key={"value_time_" + timestep.time}>
                 {time}
             </TableCell>,
@@ -149,7 +124,7 @@ function ForecastTableBody(props: TableBodyProps) {
             const value = getParameterValue(timestep.data, p.name)
             cells.push(
                 <TableCell
-                    className={classes.numericForecast}
+                    sx={{ textAlign: "center", color: theme.palette.primary.main, }}
                     key={'value_' + p.name + "_" + timestep.time}>
                     {value}
                 </TableCell>
@@ -162,7 +137,7 @@ function ForecastTableBody(props: TableBodyProps) {
             }
             cells.push(
                 <TableCell
-                    className={classes.numericForecastCorrected}
+                    sx={{ textAlign: "center", color: theme.palette.secondary.main}}
                     key={'corrected_' + p.name + "_" + timestep.time}>
                     {correctedValue}
                 </TableCell>
